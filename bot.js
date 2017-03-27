@@ -78,6 +78,8 @@ const sayHelloOnArrival = (userId) => {
 const checkMessageForBotCommand = (channelText) => {
     // console.log("text", channelText)
 
+    // "!say whatever"
+
     let commandObj = {
         type: null,
         argument: null
@@ -85,7 +87,7 @@ const checkMessageForBotCommand = (channelText) => {
 
     let channelTextArray = channelText.split(' ')
 
-    let command = channelText.split(' ')[0]
+    let command = channelText.split(' ')[0] // ['!say', 'whatever']
 
     let argument = channelTextArray.slice(1, channelTextArray.length).join(' ');
 
@@ -94,6 +96,7 @@ const checkMessageForBotCommand = (channelText) => {
 
     if(command[0] === "!") {
         commandObj.type = command.slice(1);
+        console.log("type", commandObj.type)
         commandObj.argument = argument;
 
         // console.log("command", commandObj)
@@ -106,11 +109,41 @@ const checkMessageForBotCommand = (channelText) => {
 
 
 const processBotCommand = (command) => {
-    console.log("command", command)
+    console.log("process command test", command)
 
-    const commandList = {
-        "say": bot.postTo('general', command.argument)
+    // // if (command.type !== 'say') {
+    // //     return false
+    // // }
+
+    let params = {
+        icon_emoji: ':robot_face:'
+    };
+
+    // const commandList = {
+    //     "say": bot.postTo('general', command.argument, params),
+    //     "tictactoe": "something will happen here"
+    // }
+
+    // console.log("type right here", command.type)
+
+    // // console.log(commandList[command.type])
+    // return commandList[command.type] || console.log("Improper command entered")
+
+
+    // SWITCH STATEMENT WAY THAT WORKS
+
+    switch(command.type){
+
+        case 'say':
+            bot.postTo('general', command.argument, params);
+            break;
+
+        case 'tic':
+            console.log("tactoe")
+            break;
+
+        default:
+            console.log("Improper command entered");
+
     }
-
-    return commandList[command.type]
 }
