@@ -1,6 +1,6 @@
 const { bot } = require('./createBot')
 
-const { createNewTicTacToeGame } = require('./tictactoe')
+const { createNewTicTacToeGame, showGameBoard, setLetter } = require('./tictactoe')
 
 // bot parameters
 let params = {
@@ -33,14 +33,65 @@ const checkMessageForBotCommand = (channelText) => {
 }
 
 
+const createTicTacToeCommand = (commandObj) => {
+
+    let ticTacToeObj = {
+        type: null,
+        argument: null
+    }
+
+    let parseTicTacToe = commandObj.argument
+
+    let ticTacToeArray = parseTicTacToe.split(' ');
+
+    let command = ticTacToeArray[0]
+
+    let argument = ticTacToeArray.slice(1, ticTacToeArray.length).join(' ');
+
+    ticTacToeObj.type = command
+
+    ticTacToeObj.argument = argument
+
+    return ticTacToeObj
+}
+
+
+
 const processTicTacToe = (commandObj) => {
-  console.log("func ran")
-  console.log("ttt obj", commandObj)
+  // console.log("func ran")
+  console.log("cmd obj", commandObj)
+
+  let ticTacToeObj = createTicTacToeCommand(commandObj)
+
+  console.log("ttt obj", ticTacToeObj)
+
+
+  switch(ticTacToeObj.type){
+
+        case 'newGame':
+            createNewTicTacToeGame()
+            break;
+
+        case 'showGame':
+            showGameBoard()
+            break;
+
+        case 'set':
+            setLetter(ticTacToeObj.argument)
+            break;
+
+        case 'help':
+            break;
+
+        default:
+            console.log("Improper tic tac toe command entered");
+
+    }
 }
 
 
 const processBotCommand = (command) => {
-
+    // console.log("command", command)
 
     switch(command.type){
 
