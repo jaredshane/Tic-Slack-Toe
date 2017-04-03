@@ -1,5 +1,6 @@
 const SlackBot = require('slackbots');
-const { token } = require('./private/token')
+// const { token } = require('./private/token')
+const token = process.env.slack_token
 
 console.log("create bot.js loaded")
 
