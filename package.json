@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "Slack game - Tic Tac Toe",
   "main": "bot.js",
+  "engine": {
+    "node": "7"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./bot.js"
+    "start": "node ./bot.js"
   },
   "repository": {
     "type": "git",
