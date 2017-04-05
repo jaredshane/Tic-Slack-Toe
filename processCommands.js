@@ -82,6 +82,7 @@ const processTicTacToe = (commandObj) => {
             break;
 
         case 'help':
+            bot.postTo('general', commandList, params)
             break;
 
         default:
