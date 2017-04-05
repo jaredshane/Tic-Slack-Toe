@@ -109,6 +109,10 @@ const processBotCommand = (command) => {
             process.exit();
             break;
 
+        case 'help':
+            bot.postTo('general', commandList, params)
+            break;
+
         default:
             console.log("Improper command entered");
 
