@@ -15,7 +15,7 @@ let params = {
 const sayHelloOnUserArrival = (userId) => {
 
   // use postMessage to send messages using user IDs
-  bot.postMessage(userId, 'Hello Bozo!', params);
+  // bot.postMessage(userId, 'Hello Bozo!', params);
 }
 
 
