@@ -1,6 +1,7 @@
 const { bot } = require('./createBot')
 
 const { createNewTicTacToeGame, showGameBoard, setLetter } = require('./tictactoe')
+const { commandList } = require('./commandList')
 
 // bot parameters
 let params = {
