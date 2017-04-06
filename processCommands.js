@@ -1,6 +1,7 @@
 const { bot } = require('./createBot')
 
 const { createNewTicTacToeGame, showGameBoard, setLetter } = require('./tictactoe')
+const { commandList } = require('./commandList')
 
 // bot parameters
 let params = {
@@ -81,6 +82,7 @@ const processTicTacToe = (commandObj) => {
             break;
 
         case 'help':
+            bot.postTo('general', commandList, params)
             break;
 
         default:
@@ -105,6 +107,10 @@ const processBotCommand = (command) => {
 
         case 'killbot':
             process.exit();
+            break;
+
+        case 'help':
+            bot.postTo('general', commandList, params)
             break;
 
         default:
